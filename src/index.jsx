@@ -1,4 +1,5 @@
 // @format
+// @flow
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -11,6 +12,11 @@ import PostIndex from './components/post_index';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
+const rootEl = document.querySelector('.container');
+if (!(rootEl instanceof Element)) {
+  throw new Error('invalid type');
+}
+
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
@@ -19,5 +25,5 @@ ReactDOM.render(
       </div>
     </BrowserRouter>
   </Provider>,
-  document.querySelector('.container'),
+  rootEl
 );
